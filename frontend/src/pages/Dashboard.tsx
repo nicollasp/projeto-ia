@@ -215,7 +215,19 @@ export default function Dashboard() {
                   onClick={perguntarIA}
                   className="bg-blue-500 text-white px-4 py-4 rounded hover:bg-opacity-50 transition duration-300"
                 >
-                  {loadingIA ? "..." : "Perguntar"}
+                  {loadingIA ? (
+                    <span className="flex gap-1 justify-center items-center">
+                      <span className="animate-bounce [animation-delay:-0.3s]">
+                        .
+                      </span>
+                      <span className="animate-bounce [animation-delay:-0.15s]">
+                        .
+                      </span>
+                      <span className="animate-bounce">.</span>
+                    </span>
+                  ) : (
+                    "Perguntar"
+                  )}
                 </button>
               </div>
 
