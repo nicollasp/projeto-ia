@@ -23,7 +23,6 @@ export class TransacaoController {
     @Body() body: CriarTransacaoDto,
     @TokenPayloadParam() payload: PayloadTokenDto,
   ) {
-    console.log('chegou aqui: ', body, payload);
     return this.transacaoService.criarTransacao(payload.sub, body);
   }
 
@@ -41,5 +40,9 @@ export class TransacaoController {
   @Get('resumo')
   resumo(@TokenPayloadParam() payload: PayloadTokenDto) {
     return this.transacaoService.resumoMensal(payload.sub);
+  }
+  @Get('grafico')
+  grafico(@TokenPayloadParam() payload: PayloadTokenDto) {
+    return this.transacaoService.graficoMensal(payload.sub);
   }
 }

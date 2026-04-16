@@ -22,9 +22,6 @@ export class IaController {
       payload.sub,
     );
 
-    console.log('USER ID:', payload.sub);
-    console.log('TRANSACOES:', transacoes);
-
     return this.iaService.analisarFinancas(transacoes || [], pergunta);
   }
 }

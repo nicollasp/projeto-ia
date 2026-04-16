@@ -64,4 +64,27 @@ export class TransacaoService {
       where: { usuarioId },
     });
   }
+  async graficoMensal(usuarioId: number) {
+    const transacoes = await this.prismaService.transacoes.findMany({
+      where: { usuarioId },
+    });
+
+    const meses = Array.from({ length: 12 }, (_, i) => ({
+      mes: new Date(0, i).toLocaleString('pt-BR', { month: 'short' }),
+      entradas: 0,
+      saidas: 0,
+    }));
+
+    transacoes.forEach((t) => {
+      const mes = new Date(t.data).getMonth();
+
+      if (t.tipo === 'ENTRADA') {
+        meses[mes].entradas += t.valor;
+      } else {
+        meses[mes].saidas += t.valor;
+      }
+    });
+
+    return meses;
+  }
 }

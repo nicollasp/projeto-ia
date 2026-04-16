@@ -18,3 +18,6 @@ export function deletarTransacao(id: number) {
 export async function obterResumo() {
   return await request("/transacoes/resumo");
 }
+export function obterGraficoMensal() {
+  return request("/transacoes/grafico");
+}
